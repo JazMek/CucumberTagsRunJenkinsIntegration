@@ -1,9 +1,23 @@
 pipeline {
     agent any
     parameters {
-        choice(choices: 'yes\nno', description: 'Are you sure you want to execute this test?', name: 'run_test_only')
-        choice(choices: 'yes\nno', description: 'Archived war?', name: 'archive_war')
-        string(defaultValue: "mig.suarez1989@gmail.com", description: 'email for notifications', name: 'notification_email')
+        choice(choices: 'yes\nno', description: 'QA Environment', name: 'run_test_on_QAenv')
+        choice(choices: 'yes\nno', description: 'Acceptence Environment', name: 'run_test_on_Accepenv')
+        choice(choice['Dev',
+                      'QA',
+                      'Accept'
+                     ],
+                     description: "Select the Environment",
+                     name: 'Environment'
+                     )
+        choice(choice['@regression',
+                       '@sanity',
+                       '@smoke'
+                     ],
+                     description: "Select the Feature Tag",
+                     name: 'tag'
+                     )
+        string(defaultValue: "karimmekdoud@gmail.com", description: 'email for notifications', name: 'notification_email')
     }
     environment {
         firstEnvVar= 'FIRST_VAR'
@@ -13,40 +27,40 @@ pipeline {
     stages {
         stage('Test'){
             when {
-                environment name: 'run_test_only', value: 'yes'
+                environment name: 'tag'
             }
             steps{
-                sh 'cd examples/java-calculator && mvn clean integration-test'
+                sh 'mvn test -Dcucumber.options=”–tags ${tag}”'
             }
         }
 
-        stage ('Run demo parallel stages') {
-        steps {
-        parallel(
-        "Parallel stage #1":
-                  {
-                  //running a script instead of DSL. In this case to run an if/else
-                  script{
-                    if (env.run_test_only =='yes')
-                        {
-                        echo env.firstEnvVar
-                        }
-                    else
-                        {
-                        echo env.secondEnvVar
-                        }
-                  }
-         },
-        "Parallel stage #2":{
-                echo "${thirdEnvVar}"
-                }
-                )
+//         stage ('Run demo parallel stages') {
+//         steps {
+//         parallel(
+//         "Parallel stage #1":
+//                   {
+//                   //running a script instead of DSL. In this case to run an if/else
+//                   script{
+//                     if (env.run_test_only =='yes')
+//                         {
+//                         echo env.firstEnvVar
+//                         }
+//                     else
+//                         {
+//                         echo env.secondEnvVar
+//                         }
+//                   }
+//          },
+//         "Parallel stage #2":{
+//                 echo "${thirdEnvVar}"
+//                 }
+//                 )
 
-             }
-        }
+//              }
+//         }
 
 
-    }
+//     }
 
     post {
         success {
@@ -62,11 +76,11 @@ pipeline {
                      replyTo: '',
                      subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
                      to: env.notification_email)
-                     if (env.archive_war =='yes')
-                     {
-                        archiveArtifacts '**/java-calculator-*-SNAPSHOT.jar'
-                      }
-                      cucumber fileIncludePattern: '**/java-calculator/target/cucumber-report.json', sortingMethod: 'ALPHABETICAL'
+//                      if (env.archive_war =='yes')
+//                      {
+//                         archiveArtifacts '**/java-calculator-*-SNAPSHOT.jar'
+//                       }
+                      cucumber fileIncludePattern: '**/CucumberTagsRunJenkinsIntegration/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
             //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/home/reports', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
             }
         //}
@@ -80,7 +94,7 @@ pipeline {
                  replyTo: '',
                  subject: "${JOB_NAME} ${BUILD_NUMBER} failed",
                  to: env.notification_email)
-                 cucumber fileIncludePattern: '**/java-calculator/target/cucumber-report.json', sortingMethod: 'ALPHABETICAL'
+                 cucumber fileIncludePattern: '**/CucumberTagsRunJenkinsIntegration/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
 
             //publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/home/tester/reports', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
         }
