@@ -1,15 +1,13 @@
 pipeline {
     agent any
     parameters {
-        choice(choices: 'yes\nno', description: 'QA Environment', name: 'run_test_on_QAenv')
-        choice(choices: 'yes\nno', description: 'Acceptence Environment', name: 'run_test_on_Accepenv')
-        choice(choice['Dev',
-                      'QA',
-                      'Accept'
-                     ],
-                     description: "Select the Environment",
-                     name: 'Environment'
-                     )
+//         choice(choice['Dev',
+//                       'QA',
+//                       'Accept'
+//                      ],
+//                      description: "Select the Environment",
+//                      name: 'Environment'
+//                      )
         choice(choice['@regression',
                        '@sanity',
                        '@smoke'
