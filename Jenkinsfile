@@ -1,12 +1,12 @@
 
 pipeline {
     agent any
-            choice(choice['@regression',
+            choice(name: 'tag',
+                   choices['@regression',
                           '@sanity',
                           '@smoke'
                          ],
-                     description: "Select the Feature Tag",
-                     name: 'tag'
+                     description: "Select the Feature Tag"
                      )
 
     stages {
