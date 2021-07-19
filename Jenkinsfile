@@ -15,10 +15,10 @@ pipeline {
     stages {
          stage('Smoke Testing'){
           steps{
-                echo '{tag} Testing'
+                echo '${tag} Testing'
                 sh "mvn test -Dcucumber.filter.tags=${"tag"}"
                // sh 'mvn test -Dcucumber.options=”–tags ${tag}”'
-                echo 'The {tag} was performed'
+                echo 'The ${tag} was performed'
 
 
                 }
