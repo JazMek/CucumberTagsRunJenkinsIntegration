@@ -2,12 +2,25 @@
 pipeline {
     agent any
     stages {
-stage('testing pipeline'){
+         stage('Smoke Testing'){
           steps{
-      echo 'test1'
-                sh 'mkdir from-jenkins'
-                sh 'touch from-jenkins/test.txt'
+      echo 'Smoke Testing'
+
                 }
         }
-}
+        
+        stage('Sanity Tasting'){
+          steps{
+      echo 'Sanity Tasting'
+
+                }
+        }
+        
+         stage('Regretion Tasting'){
+          steps{
+      echo 'Regretion Tasting'
+
+                }
+        }
+   }
 }
