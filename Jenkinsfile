@@ -2,12 +2,12 @@
 pipeline {
     agent any
     parameters {
-        choice(choices['@regression',
+        choice(name:'tag', choices['@regression',
                        '@sanity',
                        '@smoke'
                      ],
-                     description: "Select the Feature Tag",
-                     name: 'tag'
+                     description: "Select the Feature Tag"
+                     
                      )
         string(defaultValue: "karimmekdoud@gmail.com", description: 'email for notifications', name: 'notification_email')
     }
