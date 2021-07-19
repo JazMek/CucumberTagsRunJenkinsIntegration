@@ -16,8 +16,8 @@ pipeline {
          stage('Smoke Testing'){
           steps{
                 echo '{tag} Testing'
-//               sh "mvn test -Dcucumber.filter.tags=${"tag"}"
-                sh 'mvn test -Dcucumber.options=”–tags ${tag}”'
+                sh "mvn test -Dcucumber.filter.tags=${"tag"}"
+               // sh 'mvn test -Dcucumber.options=”–tags ${tag}”'
                 echo 'The {tag} was performed'
 
 
