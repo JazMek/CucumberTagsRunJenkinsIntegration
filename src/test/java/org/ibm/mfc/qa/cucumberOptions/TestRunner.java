@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
                              },
                    monochrome=true,
                    strict=true
-                  //tags={"@regression","@sanity", "@smoke"}
+                  //tags={"@regression","@sanity", "@smoke", "@orderEvent"}
                  )
 public class TestRunner {
 }

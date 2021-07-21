@@ -5,7 +5,8 @@ pipeline {
         choice(name :'tag', choices :[
                        '@regression',
                        '@sanity',
-                       '@smoke'
+                       '@smoke' ,
+                       '@orderEvent'
                      ],
                      description : "Select the Feature Tag"
                      
