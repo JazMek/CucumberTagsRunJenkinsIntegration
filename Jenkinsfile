@@ -23,36 +23,36 @@ pipeline {
             }
         }
         
-        post {
-        success {
-            echo "Test succeeded"
-            script {
-                mail(bcc: '',
-                     body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
-                     cc: '',
-                     from: 'jenkins-admin@gmail.com',
-                     replyTo: '',
-                     subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
-                     to: env.notification_email)
-                      cucumber fileIncludePattern: '**/CucumberTagsRunJenkinsIntegration/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
-                      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/home/reports', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
-             }
-         }
-        failure {
-            echo "Test failed"
-          script {
-            mail(bcc: '',
-                body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
-                 cc: '',
-                 from: 'jenkins-admin@gmail.com',
-                 replyTo: '',
-                 subject: "${JOB_NAME} ${BUILD_NUMBER} failed",
-                 to: env.notification_email)
-                 cucumber fileIncludePattern: '**/CucumberTagsRunJenkinsIntegration/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
-                 publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/home/tester/reports', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
-          }
-        }
-       }
+//         post {
+//         success {
+//             echo "Test succeeded"
+//             script {
+//                 mail(bcc: '',
+//                      body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
+//                      cc: '',
+//                      from: 'jenkins-admin@gmail.com',
+//                      replyTo: '',
+//                      subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
+//                      to: env.notification_email)
+//                       cucumber fileIncludePattern: '**/CucumberTagsRunJenkinsIntegration/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
+//                       publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/home/reports', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
+//              }
+//          }
+//         failure {
+//             echo "Test failed"
+//           script {
+//             mail(bcc: '',
+//                 body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
+//                  cc: '',
+//                  from: 'jenkins-admin@gmail.com',
+//                  replyTo: '',
+//                  subject: "${JOB_NAME} ${BUILD_NUMBER} failed",
+//                  to: env.notification_email)
+//                  cucumber fileIncludePattern: '**/CucumberTagsRunJenkinsIntegration/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
+//                  publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/home/tester/reports', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
+//           }
+//         }
+//        }
    
    }
 }
