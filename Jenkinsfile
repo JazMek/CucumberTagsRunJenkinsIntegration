@@ -68,14 +68,14 @@ pipeline {
 //           }
 //         }
        
-//             post {
-//         always {
-//              echo "E mail sent to ${notification_email}"
+            post {
+        always {
+             echo "E mail sent to ${notification_email}"
             
-//              mail bcc: '', body: 'the build was sects', cc: 'email notification', from: '', replyTo: '', subject: 'Email notification', to: 'testkarim1980@gmail.com'
+             mail bcc: '', body: 'the build was sects', cc: 'email notification', from: '', replyTo: '', subject: 'Email notification', to: 'testkarim1980@gmail.com'
             
-//         }
-//     }
+        }
+    }
    
    }
 }
