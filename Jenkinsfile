@@ -2,6 +2,14 @@
 pipeline {
     agent any
     parameters {
+        choice(name :'Env', choices :[
+                       'DEV',
+                       'QA',
+                       'UI'
+                     ],
+                     description : "Select the Envirenment"
+                     
+                     )
         choice(name :'tag', choices :[
                        '@regression',
                        '@sanity',
