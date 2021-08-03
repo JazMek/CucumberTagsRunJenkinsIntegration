@@ -43,8 +43,8 @@ pipeline {
                      subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
                      //to: env.notification_email)
                      to: "${notification_email}")
-                      cucumber fileIncludePattern: '/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
-                      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/target/reports/extent-reports/SparkReport/Spark.htmld.html', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
+                      //cucumber fileIncludePattern: '/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
+                      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/target/reports/extent-reports/SparkReport', reportFiles: 'Spark.htmld.html', reportName: 'Spark Test Report', reportTitles: ''])
         }
       }
         
