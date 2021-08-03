@@ -74,7 +74,7 @@ pipeline {
 //                      recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
 //                      to: "${notification_email}",
 //                      subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            mail bcc: '', body: 'the build was sects', cc: 'email notification', from: '', replyTo: '', subject: 'Email notification', to: "${notification_email}"
+            mail bcc: '', body: 'the build was sects', cc: 'email notification', from: '', replyTo: '', subject: 'Email notification', to: 'karimmekdoud@gmail.com'
             
         }
     }
