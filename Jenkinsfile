@@ -3,6 +3,7 @@ pipeline {
     agent any
     parameters {
         choice(name :'Env', choices :[
+                       'STG',
                        'DEV',
                        'QA',
                        'UI'
