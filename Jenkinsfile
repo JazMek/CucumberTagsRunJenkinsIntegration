@@ -38,15 +38,25 @@ pipeline {
       post {
         always {
             echo "Test succeeded"
-                emailext (body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
-                     from: 'testkarim1980@gmail.com',
-                     subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
+            
+                     emailext (from: 'testkarim1980@gmail.com',
+                               to: "${notification_email}",
+                               subject: "Email report from JOB NAME: '${JOB_NAME} ' and BUILD NUMBER: '${BUILD_NUMBER}' ",
+                               body: readFile("target/reports/cucumber-reports/cucumber.html"),
+                               mimeType:'text/html');
+                               
+                               
                      //to: env.notification_email)
-                     to: "${notification_email}")
+                     
+//                 emailext (body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
+//                      from: 'testkarim1980@gmail.com',
+//                      subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
+//                      //to: env.notification_email)
+//                      to: "${notification_email}")
                       //cucumber fileIncludePattern: '/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
             
             //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/extent-reports/SparkReport', reportFiles: 'Spark.htmld.html', reportName: 'Spark Test Report', reportTitles: ''])
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/cucumber-reports', reportFiles: 'cucumber.html', reportName: 'Spark Test Report', reportTitles: ''])
+            //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/cucumber-reports', reportFiles: 'cucumber.html', reportName: 'Spark Test Report', reportTitles: ''])
         }
       }
         
