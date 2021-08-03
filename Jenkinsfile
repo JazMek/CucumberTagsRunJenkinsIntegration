@@ -20,7 +20,7 @@ pipeline {
                      description : "Select the Feature Tag"
                      
                      )
-        string(defaultValue: 'testkarim1980@gmail.com', description: 'email for notifications', name: 'notification_email')
+        string(defaultValue: '', description: 'email for notifications', name: 'notification_email')
     }
 
     stages {
