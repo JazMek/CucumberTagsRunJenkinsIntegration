@@ -20,7 +20,8 @@ pipeline {
                      description : "Select the Feature Tag"
                      
                      )
-        string(defaultValue: '', description: 'email for notifications', name: 'notification_email')
+        string(defaultValue: 'testkarim1980@gmail.com', description: 'Implicite wait time', name: 'Implicite Wait Time:')
+        string(defaultValue: 'testkarim1980@gmail.com', description: 'email for notifications', name: 'notification_email')
     }
 
     stages {
