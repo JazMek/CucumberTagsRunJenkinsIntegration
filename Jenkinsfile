@@ -25,7 +25,7 @@ pipeline {
     }
 
     stages {
-         stage("Runing ${tag} tests suit"){
+         stage('Runing tests suit'){
             steps{
                 echo "${tag} Testing"
                 sh "mvn test -Dcucumber.filter.tags=${tag}"
@@ -96,5 +96,5 @@ pipeline {
 //         }
 //     }
    
-   }
+  // }
 }
