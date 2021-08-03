@@ -41,7 +41,7 @@ pipeline {
             
                      emailext (from: 'testkarim1980@gmail.com',
                                to: "${notification_email}",
-                               subject: "Email report from JOB NAME: '${JOB_NAME} ' and BUILD NUMBER: '${BUILD_NUMBER}' ",
+                               subject: "Email report '${JOB_NAME} ${BUILD_NUMBER}'",
                                body: readFile("target/reports/cucumber-reports/cucumber.html"),
                                mimeType:'text/html');
                                
