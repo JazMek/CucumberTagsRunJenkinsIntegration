@@ -39,13 +39,11 @@ pipeline {
         always {
             echo "Test succeeded"
             
-                     emailext (from: 'testkarim1980@gmail.com',
+                     emailext (from:'testkarim1980@gmail.com',
                                to: "${notification_email}",
-                               cc: 'Hi',
-                               bcc:'HoHo',
                                subject: "Email report '${JOB_NAME} ${BUILD_NUMBER}'",
                                body: readFile("target/reports/cucumber-reports/cucumber.html"),
-                               mimeType:'text/html');
+                               mimeType:'html');
                                
                                
                      //to: env.notification_email)
