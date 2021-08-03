@@ -38,11 +38,8 @@ pipeline {
       post {
         always {
             echo "Test succeeded"
-                emailext (bcc: '',
-                     body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
-                     cc: '',
+                emailext (body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
                      from: 'testkarim1980@gmail.com',
-                     replyTo: '',
                      subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
                      //to: env.notification_email)
                      to: "${notification_email}")
