@@ -43,7 +43,7 @@ pipeline {
                                to: "${notification_email}",
                                subject: "Email report '${JOB_NAME} ${BUILD_NUMBER}'",
                                body: readFile("target/reports/cucumber-reports/cucumber.html"),
-                               mimeType:'html');
+                               mimeType:'text/html');
                                
                                
                      //to: env.notification_email)
