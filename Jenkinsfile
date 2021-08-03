@@ -68,13 +68,13 @@ pipeline {
        
             post {
         always {
-            echo "E mail sent to ${notification_email}"
+//             echo "E mail sent to ${notification_email}"
             
 //             emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
 //                      recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
 //                      to: "${notification_email}",
 //                      subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            mail bcc: '', body: 'the build was sects', cc: 'email notification', from: '', replyTo: '', subject: 'Email notification', to: 'karimmekdoud@gmail.com'
+            mail bcc: '', body: 'the build was sects', cc: 'email notification', from: '', replyTo: '', subject: 'Email notification', to: "${notification_email}"
             
         }
     }
