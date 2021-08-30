@@ -52,7 +52,7 @@ pipeline {
                 echo "The runing Tag is : ${tag}"
                 sh "mvn test -Dcucumber.filter.tags=${tag}"
                // sh 'mvn test -Dcucumber.options=”–tags ${tag}”'
-                echo "The application testing en ${Env} Environment, ${Browsers} Browser and Tag ${tag} was performed successfully"
+                echo "The application testing en ${Envirenment} Environment, ${Browsers} Browser and Tag ${tag} was performed successfully"
                 }
          }
     }
