@@ -46,7 +46,7 @@ pipeline {
     stages {
          stage('Runing tests suit'){
             steps{
-                echo "The testing Environment is : ${Env} "
+                echo "The testing Environment is : ${Envirenment} "
                 echo "The testing Browser is : ${Browsers} "
                 echo "Headless Browser : ${Headless} "
                 echo "The runing Tag is : ${tag}"
