@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="3" time="0.334">
+<testcase classname="FFM-OCMF-CreateOrderEventTransformer" name="Create Order Event Transformer" time="0.174">
+<system-out><![CDATA[Given load the data with the data with "testdata"...........................passed
+Given with data file prefixed with "testdata" and json file is "testdata"...passed
+Then call apis and validate with all the data provided......................passed
+]]></system-out>
+</testcase>
+<testcase classname="FFM-OCMF-CreateOrderEventTransporter" name="Create Order Event Transporter" time="0.013">
+<system-out><![CDATA[Given load the data with the data with "testdata"...........................passed
+Given with data file prefixed with "testdata" and json file is "testdata"...passed
+Then call apis and validate with all the data provided......................passed
+]]></system-out>
+</testcase>
+<testcase classname="FFM-OCMF-CreateOrderEventValidation" name="Create Order Event Validation" time="0.01">
+<system-out><![CDATA[Given load the data with the data with "testdata"...........................passed
+Given with data file prefixed with "testdata" and json file is "testdata"...passed
+Then call apis and validate with all the data provided......................passed
+]]></system-out>
+</testcase>
+</testsuite>
