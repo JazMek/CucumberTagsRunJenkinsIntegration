@@ -14,8 +14,6 @@ pipeline {
          choice(name :'Headless', choices :[
                         'False',
                         'True'
-
-
                       ],
                       description : "Headless Browser"
 
@@ -28,7 +26,6 @@ pipeline {
                        'All'
                      ],
                      description : "Select the Browser"
-
                      )
         choice(name :'tag', choices :[
                        '@regression',
@@ -38,7 +35,6 @@ pipeline {
                        '@loadTesting'
                      ],
                      description : "Select the test suit using the corresponding Tag"
-
                      )
         string(defaultValue: '2', description: 'Implicitly wait time', name: 'Implicitly Wait Time:')
         string(defaultValue: 'testkarim1980@gmail.com', description: 'email for notifications', name: 'notification_email')
@@ -57,7 +53,6 @@ pipeline {
                 }
          }
     }
-
       post {
         always {
             echo "Test succeeded"
@@ -66,8 +61,6 @@ pipeline {
                                subject: "Email report '${JOB_NAME} ${BUILD_NUMBER}'",
                                body: readFile("target/reports/cucumber-reports/cucumber.html"),
                                mimeType:'text/html');
-
-
                      //to: env.notification_email)
 
 //                 emailext (body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
@@ -93,7 +86,6 @@ pipeline {
                 fileIncludePattern: '**/*cucumber-report.json',
                 sortingMethod: 'ALPHABETICAL',
                 trendsLimit: 100
-    
         }
       }
 
