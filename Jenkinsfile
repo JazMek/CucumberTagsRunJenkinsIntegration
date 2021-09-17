@@ -2,13 +2,13 @@
 pipeline {
     agent any
     parameters {
-        choice(name :'Environment', choices :[
+        choice(name :'TestingEnvironment', choices :[
                        'STG',
                        'DEV',
                        'QA',
                        'UI'
                      ],
-                     description : "Select the Environment"
+                     description : "Select the Testing Environment"
 
                      )
          choice(name :'Headless', choices :[
@@ -43,13 +43,13 @@ pipeline {
     stages {
          stage('Running tests suit'){
             steps{
-                echo "The testing Environment is : ${Environment} "
+                echo "The testing Environment is : ${TestingEnvironment} "
                 echo "The testing Browser is : ${Browsers} "
                 echo "Headless Browser : ${Headless} "
                 echo "The running Tag is : ${tag}"
                 sh "mvn test -Dcucumber.filter.tags=${tag}"
                // sh 'mvn test -Dcucumber.options=”–tags ${tag}”'
-                echo "The application testing en ${Environment} Environment, ${Browsers} Browser and Tag ${tag} was performed"
+                echo "The application testing en ${TestingEnvironment} Environment, ${Browsers} Browser and Tag ${tag} was performed"
                 }
          }
     }
