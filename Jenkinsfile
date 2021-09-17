@@ -11,7 +11,7 @@ pipeline {
                      description : "Select the Environment"
 
                      )
-         choice(name :'Headless Browser', choices :[
+         choice(name :'Headless', choices :[
                         'False',
                         'True'
 
@@ -49,7 +49,7 @@ pipeline {
             steps{
                 echo "The testing Environment is : ${Environment} "
                 echo "The testing Browser is : ${Browsers} "
-                echo "Headless Browser : ${Headless Browser} "
+                echo "Headless Browser : ${Headless} "
                 echo "The running Tag is : ${tag}"
                 sh "mvn test -Dcucumber.filter.tags=${tag}"
                // sh 'mvn test -Dcucumber.options=”–tags ${tag}”'
