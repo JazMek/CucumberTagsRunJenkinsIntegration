@@ -77,8 +77,23 @@ pipeline {
 //                      to: "${notification_email}")
                       //cucumber fileIncludePattern: '/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
 
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/extent-reports/SparkReport', reportFiles: 'Spark.htmld.html', reportName: 'Spark Test Report', reportTitles: ''])
+            // publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/extent-reports/SparkReport', reportFiles: 'Spark.htmld.html', reportName: 'Spark Test Report', reportTitles: ''])
             //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/cucumber-reports', reportFiles: 'cucumber.html', reportName: 'Spark Test Report', reportTitles: ''])
+                
+        cucumber buildStatus: 'UNSTABLE',
+                failedFeaturesNumber: 1,
+                failedScenariosNumber: 1,
+                skippedStepsNumber: 1,
+                failedStepsNumber: 1,
+                classifications: [
+                        [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
+                        [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
+                ],
+                reportTitle: 'Cucumber Report',
+                fileIncludePattern: '**/*cucumber-report.json',
+                sortingMethod: 'ALPHABETICAL',
+                trendsLimit: 100
+    
         }
       }
 
