@@ -11,6 +11,17 @@ pipeline {
                      description : "Select the Testing Environment"
 
                      )
+        
+                choice(description : "Select the Operating System: " ,name :'OS', choices :[
+                       'Windows',
+                       'Mac',
+                       'Linux',
+                     ]
+                
+                     )
+        
+         string(description: 'Select the OS Version: ', defaultValue: 'Not defind', name: 'OS Version')
+        
          choice(name :'Headless', choices :[
                         'False',
                         'True'
@@ -27,6 +38,9 @@ pipeline {
                      ],
                      description : "Select the Browser"
                      )
+        
+        string(defaultValue: 'Not defind', description: 'Browser Version', name: 'Browser Version')
+        
         choice(name :'tag', choices :[
                        '@regression',
                        '@sanity',
