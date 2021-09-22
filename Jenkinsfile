@@ -73,7 +73,7 @@ pipeline {
                      emailext (from:'jenkins@gmail.com',
                                to: "${notification_email}",
                                subject: "Email report '${JOB_NAME} ${BUILD_NUMBER}'",
-                               body: readFile("//target/reports/cucumber-reports/cucumber.html"),
+                               body: readFile("/target/reports/cucumber-reports/cucumber.html",
                                cucumber fileIncludePattern: '/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
                                mimeType:'text/html');
                      //to: env.notification_email)
