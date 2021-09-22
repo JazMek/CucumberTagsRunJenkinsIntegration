@@ -75,7 +75,7 @@ pipeline {
                                subject: "Email report '${JOB_NAME} ${BUILD_NUMBER}'",
                                body: readFile("/target/reports/cucumber-reports/cucumber.html"),
                                cucumber (fileIncludePattern: '/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'),
-                               mimeType:('text/html'),
+                               mimeType:('text/html')
                      //to: env.notification_email)
 
 //                 emailext (body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
@@ -88,19 +88,19 @@ pipeline {
             // publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/extent-reports/SparkReport', reportFiles: 'Spark.htmld.html', reportName: 'Spark Test Report', reportTitles: ''])
             //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/cucumber-reports', reportFiles: 'cucumber.html', reportName: 'Spark Test Report', reportTitles: ''])
                 
-        cucumber buildStatus: 'UNSTABLE',
-                failedFeaturesNumber: 1,
-                failedScenariosNumber: 1,
-                skippedStepsNumber: 1,
-                failedStepsNumber: 1,
-                classifications: [
-                        [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
-                        [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
-                ],
-                reportTitle: 'Cucumber Report',
-                fileIncludePattern: '**/*cucumber-report.json',
-                sortingMethod: 'ALPHABETICAL',
-                trendsLimit: 100
+//         cucumber buildStatus: 'UNSTABLE',
+//                 failedFeaturesNumber: 1,
+//                 failedScenariosNumber: 1,
+//                 skippedStepsNumber: 1,
+//                 failedStepsNumber: 1,
+//                 classifications: [
+//                         [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
+//                         [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
+//                 ],
+//                 reportTitle: 'Cucumber Report',
+//                 fileIncludePattern: '**/*cucumber-report.json',
+//                 sortingMethod: 'ALPHABETICAL',
+//                 trendsLimit: 100
         }
       }
 
