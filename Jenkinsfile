@@ -85,7 +85,7 @@ pipeline {
 //           subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
 //           body: "${env.BUILD_URL} has result:  ${currentBuild.result}"
         
-        emailext attachmentsPattern: '**/*.html',
+        emailext attachmentsPattern: '**/*.html, **/*.pdf',
                  body: "${env.BUILD_URL} has result:  ${currentBuild.result}",
                  subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
                  to: "${notification_email}"
@@ -102,14 +102,14 @@ pipeline {
 //       reportName: "API Unit Testing Results"
 //     ])
         
-      publishHTML (target: [
-      allowMissing: false,
-      alwaysLinkToLastBuild: false,
-      keepAll: true,
-      reportDir: 'target/reports/cucumber-reports',
-      reportFiles: 'cucumber.html',
-      reportName: "Cucumber Reports Results"
-    ])
+//       publishHTML (target: [
+//       allowMissing: false,
+//       alwaysLinkToLastBuild: false,
+//       keepAll: true,
+//       reportDir: 'target/reports/cucumber-reports',
+//       reportFiles: 'cucumber.html',
+//       reportName: "Cucumber Reports Results"
+//     ])
 //     }
 //   }
 
@@ -123,20 +123,20 @@ pipeline {
             // publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/extent-reports/SparkReport', reportFiles: 'Spark.htmld.html', reportName: 'Spark Test Report', reportTitles: ''])
             //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '../target/reports/cucumber-reports', reportFiles: 'cucumber.html', reportName: 'Spark Test Report', reportTitles: ''])
                 
-        cucumber buildStatus: 'UNSTABLE',
-                failedFeaturesNumber: 1,
-                failedScenariosNumber: 1,
-                skippedStepsNumber: 1,
-                failedStepsNumber: 1,
-                classifications: [
-                        [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
-                        [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
-                ],
-                reportTitle: 'Cucumber Report',
-                  // /Users/karimmekdoud/.jenkins/workspace/RunCucumberTagsFromJenkins/target/surefire-reports
-                fileIncludePattern: '**/cucumber-report.json',
-                sortingMethod: 'ALPHABETICAL',
-                trendsLimit: 100
+//         cucumber buildStatus: 'UNSTABLE',
+//                 failedFeaturesNumber: 1,
+//                 failedScenariosNumber: 1,
+//                 skippedStepsNumber: 1,
+//                 failedStepsNumber: 1,
+//                 classifications: [
+//                         [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
+//                         [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
+//                 ],
+//                 reportTitle: 'Cucumber Report',
+//                   // /Users/karimmekdoud/.jenkins/workspace/RunCucumberTagsFromJenkins/target/surefire-reports
+//                 fileIncludePattern: '**/cucumber-report.json',
+//                 sortingMethod: 'ALPHABETICAL',
+//                 trendsLimit: 100
         }
       }
 
