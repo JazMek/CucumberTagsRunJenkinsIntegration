@@ -67,16 +67,24 @@ pipeline {
                 }
          }
     }
-      post {
-        always {
-            echo "Test succeeded"
-                     emailext (from:'testkarim1980@gmail.com',
-                               to: "${notification_email}",
-                               subject: "Email report '${JOB_NAME} ${BUILD_NUMBER}'",
-                               body: readFile("/target/reports/cucumber-reports/cucumber.html"),
-                               cucumber (fileIncludePattern: '/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'),
-                               mimeType:('text/html'))
-                     //to: env.notification_email)
+//       post {
+//         always {
+//             echo "Test succeeded"
+//                      emailext (from:'testkarim1980@gmail.com',
+//                                to: "${notification_email}",
+//                                subject: "Email report '${JOB_NAME} ${BUILD_NUMBER}'",
+//                                body: readFile("/target/reports/cucumber-reports/cucumber.html"),
+//                                cucumber (fileIncludePattern: '/target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'),
+//                                mimeType:('text/html'))
+//                      //to: env.notification_email)
+            
+              post {
+    always {
+       mail to: "${notification_email}",
+          subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+          body: "${env.BUILD_URL} has result ${currentBuild.result}"
+//     }
+//   }
 
 //                 emailext (body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
 //                      from: 'testkarim1980@gmail.com',
