@@ -89,6 +89,7 @@ pipeline {
                  body: "${env.BUILD_URL} has result:  ${currentBuild.result}",
                  subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
                  to: "${notification_email}"
+                 cucumber fileIncludePattern: 'target/reports/cucumber-reports/cucumber.json', sortingMethod: 'ALPHABETICAL'
         
         
         
