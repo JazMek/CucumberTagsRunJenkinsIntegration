@@ -83,7 +83,14 @@ pipeline {
        mail to: "${notification_email}",
           subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
           body: "${env.BUILD_URL} has result:  ${currentBuild.result}"
+        emailext attachmentsPattern: '**/*.html',
+                 body: "${env.BUILD_URL} has result:  ${currentBuild.result}",
+                 subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+                 to: "${notification_email}"
         
+        
+        
+        //emailext attachmentsPattern: '**/*.html', body: 'Body here', subject: 'Subject here', to: 'mail@gmail.com, mail2@gmail.com, mail3@gmail.com'
 //         publishHTML (target: [
 //       allowMissing: false,
 //       alwaysLinkToLastBuild: false,
@@ -97,7 +104,7 @@ pipeline {
       allowMissing: false,
       alwaysLinkToLastBuild: false,
       keepAll: true,
-      reportDir: 'target/reports/cucumber-reports',
+      reportDir: '**/target/reports/cucumber-reports',
       reportFiles: 'cucumber.html',
       reportName: "Cucumber Reports Results"
     ])
