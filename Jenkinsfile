@@ -82,7 +82,25 @@ pipeline {
     always {
        mail to: "${notification_email}",
           subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
-          body: "${env.BUILD_URL} has result ${currentBuild.result}"
+          body: "${env.BUILD_URL} has result:  ${currentBuild.result}"
+        
+//         publishHTML (target: [
+//       allowMissing: false,
+//       alwaysLinkToLastBuild: false,
+//       keepAll: true,
+//       reportDir: 'api/build/reports/test',
+//       reportFiles: 'index.html',
+//       reportName: "API Unit Testing Results"
+//     ])
+        
+      publishHTML (target: [
+      allowMissing: false,
+      alwaysLinkToLastBuild: false,
+      keepAll: true,
+      reportDir: 'target/reports/cucumber-reports',
+      reportFiles: 'cucumber.html',
+      reportName: "Cucumber Reports Results"
+    ])
 //     }
 //   }
 
