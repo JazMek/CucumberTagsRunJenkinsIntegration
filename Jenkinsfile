@@ -80,9 +80,11 @@ pipeline {
             
               post {
     always {
-       mail to: "${notification_email}",
-          subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
-          body: "${env.BUILD_URL} has result:  ${currentBuild.result}"
+        
+//        mail to: "${notification_email}",
+//           subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+//           body: "${env.BUILD_URL} has result:  ${currentBuild.result}"
+        
         emailext attachmentsPattern: '**/*.html',
                  body: "${env.BUILD_URL} has result:  ${currentBuild.result}",
                  subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
@@ -104,7 +106,7 @@ pipeline {
       allowMissing: false,
       alwaysLinkToLastBuild: false,
       keepAll: true,
-      reportDir: '**/target/reports/cucumber-reports',
+      reportDir: 'target/reports/cucumber-reports',
       reportFiles: 'cucumber.html',
       reportName: "Cucumber Reports Results"
     ])
