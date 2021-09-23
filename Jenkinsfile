@@ -2,14 +2,7 @@
 pipeline {
 agent any
 parameters {
-string(description: 'Use Cloud Environment: ', defaultValue: 'falls', name: 'UseCloudEnv')
-choice(name :'cloudEnvName', choices :[
 
-'browserstack',
-'saucelab'
-],
-description : "Select the cloud Environment"
-)
 choice(name :'TestingEnvironment', choices :[
 'STG',
 'DEV',
@@ -18,19 +11,34 @@ choice(name :'TestingEnvironment', choices :[
 ],
 description : "Select the Testing Environment"
 )
+  
+string(description: 'Use Cloud Environment: ', defaultValue: 'falls', name: 'UseCloudEnv')
+
+choice(name :'cloudEnvName', choices :[
+'browserstack',
+'saucelab'
+],
+description : "Select the cloud Environment"
+)
+  
+string(description: 'Entre the Url : ', defaultValue: 'https://www.exemple.com/', name: 'Url')
+  
 choice(description : "Select the Operating System: " ,name :'Os', choices :[
 'Mac',
 'Windows',
 'Linux'
 ]
 )
+  
 string(description: 'Select the OS Version: ', defaultValue: 'Big Sur', name: 'Os_version')
+  
 choice(name :'Headless', choices :[
 'False',
 'True'
 ],
 description : "Headless Browser"
 )
+  
 choice(name :'BrowserName', choices :[
 'Chrome',
 'Safari',
@@ -40,7 +48,9 @@ choice(name :'BrowserName', choices :[
 ],
 description : "Select the Browser"
 )
+  
 string(defaultValue: '94', description: 'Browser Version', name: 'BrowserVersion')
+  
 choice(name :'tag', choices :[
 '@regression',
 '@sanity',
@@ -50,8 +60,11 @@ choice(name :'tag', choices :[
 ],
 description : "Select the test suit using the corresponding Tag"
 )
+  
 string(defaultValue: '2', description: 'Implicitly wait time', name: 'ImplicitlyWaitTime')
+  
 string(defaultValue: 'testkarim1980@gmail.com', description: 'email for notifications', name: 'notification_email')
+  
 }
 stages {
 stage('Running tests suit'){
