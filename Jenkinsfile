@@ -19,12 +19,12 @@ choice(name :'TestingEnvironment', choices :[
 description : "Select the Testing Environment"
 )
 choice(description : "Select the Operating System: " ,name :'Os', choices :[
-'Windows',
 'Mac',
-'Linux',
+'Windows',
+'Linux'
 ]
 )
-string(description: 'Select the OS Version: ', defaultValue: 'Not defind', name: 'Os_version')
+string(description: 'Select the OS Version: ', defaultValue: 'Big Sur', name: 'Os_version')
 choice(name :'Headless', choices :[
 'False',
 'True'
@@ -40,7 +40,7 @@ choice(name :'BrowserName', choices :[
 ],
 description : "Select the Browser"
 )
-string(defaultValue: 'Not defind', description: 'Browser Version', name: 'BrowserVersion')
+string(defaultValue: '94', description: 'Browser Version', name: 'BrowserVersion')
 choice(name :'tag', choices :[
 '@regression',
 '@sanity',
@@ -56,13 +56,13 @@ string(defaultValue: 'testkarim1980@gmail.com', description: 'email for notifica
 stages {
 stage('Running tests suit'){
 steps{
-echo "The testing Environment is : ${TestingEnvironment} "
-echo "The testing Browser is : ${Browsers} "
-echo "Headless Browser : ${Headless} "
-echo "The running Tag is : ${tag}"
+// echo "The testing Environment is : ${TestingEnvironment} "
+// echo "The testing Browser is : ${Browsers} "
+// echo "Headless Browser : ${Headless} "
+// echo "The running Tag is : ${tag}"
 sh "mvn test -Dcucumber.filter.tags=${tag}"
 // sh 'mvn test -Dcucumber.options=”–tags ${tag}”'
-echo "The application testing en ${TestingEnvironment} Environment, ${Browsers} Browser and Tag ${tag} was performed"
+//echo "The application testing en ${TestingEnvironment} Environment, ${Browsers} Browser and Tag ${tag} was performed"
 }
 }
 }
