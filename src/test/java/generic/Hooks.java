@@ -13,6 +13,7 @@ public abstract class Hooks extends Common {
     public static AmazonHomePage amazonHomePage;
     // get parameters from Jenkins
     String PropertiesFilePath = "src/test/resources/config.properties";
+    String testingEnvironmentJ= System.getProperty("TestingEnvironment");
     String useCloudEnvJ= System.getProperty("UseCloudEnv");
     String cloudEnvNameJ= System.getProperty("CloudEnvName");
     String osJ= System.getProperty("Os");
@@ -24,6 +25,7 @@ public abstract class Hooks extends Common {
 
     // Read properties from propertie file
     Properties prop = loadProperties(PropertiesFilePath);
+    String testingEnvironment= prop.getProperty("TestingEnvironment");
     Boolean useCloudEnv= Boolean.parseBoolean(prop.getProperty("UseCloudEnv")) ;
     String cloudEnvName= prop.getProperty("CloudEnvName");
     String os= prop.getProperty("Os");
@@ -56,6 +58,7 @@ public abstract class Hooks extends Common {
     @Before
     public void setUp_Init() throws IOException {
         // put the parameter in the prop file
+        setAppProperties("TestingEnvironment",testingEnvironmentJ, PropertiesFilePath);
         setAppProperties("UseCloudEnv",useCloudEnvJ, PropertiesFilePath);
         setAppProperties("UseCloudEnv",cloudEnvNameJ, PropertiesFilePath);
         setAppProperties("UseCloudEnv",osJ, PropertiesFilePath);
